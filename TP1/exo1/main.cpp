@@ -2,7 +2,8 @@
 #include<vector>
 #include<algorithm>
 
-#include "estMembre.hpp"
+#include "question1.hpp"
+#include "question2.hpp"
 
 std::ostream& operator<<(std::ostream& os, std::vector<int> const& tab) {
 	for(auto const& el : tab) {
@@ -20,6 +21,7 @@ int main(int argc, char const* argv[]) {
 
 	std::vector<int> tab1(std::stoi(argv[1]));
 	std::vector<int> tab2(std::stoi(argv[2]));
+
 	int i = 0;
 	for(int& num : tab1) {
 		num = i+=2;
@@ -30,7 +32,8 @@ int main(int argc, char const* argv[]) {
 		num = i+=3;
 	}
 
-	std::cout << sortie(tab1, tab2) << std::endl;
+	std::cout << question2::intersect(tab1, tab2) << std::endl;
+	// question2::intersect(tab1, tab2);
 
 	return 0;
 }
