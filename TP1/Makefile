@@ -1,19 +1,23 @@
 CXX            = g++
 CFLAGS         = -Wall -Wextra -std=c++0x
 
-SOURCES        = $(wildcard *.cpp)
-EXECS          = $(SOURCES:%.cpp=%.bin)
+EXOS           = $(dir $(wildcard **/main.cpp))
+EXECS          = $(EXOS:%/=%.bin)
 
 PROFILE_CFLAGS = -O -pg
 DEBUG_CFLAGS   = -O -g
 RELEASE_CFLAGS = -O2
 
-all: debug
-
 debug: CFLAGS += $(DEBUG_CFLAGS)
-debug: $(EXECS)
+debug: all
 
 profile: CFLAGS += $(PROFILE_CFLAGS)
+profile: all
 
-%.bin: %.cpp
-	$(CXX) $(CFLAGS) $< -o $@
+release: CFLAGS += $(RELEASE_CFLAGS)
+release: all
+
+all: $(EXECS)
+
+%.bin: %/*.cpp
+	$(CXX) $(CFLAGS) $^ -o $@
