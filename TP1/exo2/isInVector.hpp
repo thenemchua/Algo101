@@ -4,6 +4,5 @@
 #include<vector>
 
 bool isInVector(int number, std::vector<int> const& tab);
-std::vector<int> intersect(std::vector<int> const& tab1, std::vector<int> const& tab2);
 
 #endif

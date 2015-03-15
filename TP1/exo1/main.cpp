@@ -1,6 +1,5 @@
 #include<iostream>
 #include<vector>
-#include<algorithm>
 
 #include "question1.hpp"
 #include "question2.hpp"
@@ -12,6 +11,37 @@ std::ostream& operator<<(std::ostream& os, std::vector<int> const& tab) {
 	return os;
 }
 
+/**
+ * Cette fonction prends deux paramètres via la ligne de commande (hormis le
+ * nom du programme même), à savoir la taille des tableaux E₁ et E₂.
+ *
+ * Ensuite, il crée ces tableaux et les initialise : E₁ avec des
+ * multiples de 2 et E₂ avec des multiples de 3.
+ * 
+ * Il appelle enfin la méthode question2::intersect et affiche le tableau
+ * résultant.
+ *
+ *
+ * Exemple d'exécution :
+ *	Paramètres : n₁=6 n₂=4
+ * 		
+ * 		tab1   = {2, 4, 6, 8, 10, 12}
+ * 		tab2   = {3, 6, 9, 12}
+ * 		result = ∅
+ *
+ *		i = 0, j = 0
+ *		2 < 3 ⇒ i = 1, j = 0
+ *		4 > 3 ⇒ i = 1, j = 1
+ *		4 < 5 ⇒ i = 2, j = 1
+ *		6 > 5 ⇒ i = 2, j = 2
+ *		6 = 6 ⇒ i = 3, j = 3, result = {6}
+ *		8 < 9 ⇒ i = 4, j = 3
+ *		10> 9 ⇒ i = 4, j = 4
+ *		10<12 ⇒ i = 5, j = 5
+ *		12=12 ⇒ i = 6, i = 6, result = {6, 12}
+ *
+ *
+ */
 int main(int argc, char const* argv[]) {
 
 	if(argc <= 2) {
