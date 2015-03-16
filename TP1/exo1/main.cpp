@@ -25,22 +25,24 @@ std::ostream& operator<<(std::ostream& os, std::vector<int> const& tab) {
  * Exemple d'exécution :
  *	Paramètres : n₁=6 n₂=4
  * 		
- * 		tab1   = {2, 4, 6, 8, 10, 12}
- * 		tab2   = {3, 6, 9, 12}
- * 		result = ∅
+ * 		E₁       = {2, 4, 6, 8, 10, 12}
+ * 		E₂       = {3, 6, 9, 12}
+ * 		résultat = ∅
  *
  *		i = 0, j = 0
+ *
  *		2 < 3 ⇒ i = 1, j = 0
  *		4 > 3 ⇒ i = 1, j = 1
  *		4 < 5 ⇒ i = 2, j = 1
  *		6 > 5 ⇒ i = 2, j = 2
- *		6 = 6 ⇒ i = 3, j = 3, result = {6}
+ *		6 = 6 ⇒ i = 3, j = 3, résultat = {6}
  *		8 < 9 ⇒ i = 4, j = 3
  *		10> 9 ⇒ i = 4, j = 4
  *		10<12 ⇒ i = 5, j = 5
- *		12=12 ⇒ i = 6, i = 6, result = {6, 12}
+ *		12=12 ⇒ i = 6, i = 6, résultat = {6, 12}
  *
- *
+ *	Cela se justifie car 6 et 12 sont les seuls multiples de 2 et 3 positifs
+ *	inférieur à 12 hormis 0.
  */
 int main(int argc, char const* argv[]) {
 
