@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "question2.hpp"
 
 namespace question2 {
