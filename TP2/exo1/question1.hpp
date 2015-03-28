@@ -5,12 +5,14 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/io.hpp>
 
+using boost::numeric::ublas::matrix;
+
 namespace question1 {
 
 	/**
 	 * Effectue un produit de matrices d'entiers.
 	 */
-	matrix<int> produit(matrix<int> A, matrix<int> B);
+	matrix<int> operator*(matrix<int> A, matrix<int> B);
 
 }
 

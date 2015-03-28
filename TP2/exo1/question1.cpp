@@ -1,39 +1,28 @@
 #include "question1.hpp"
 
+using boost::numeric::ublas::matrix;
+
 namespace question1 {
 
-	bool isInVector(int number, std::vector<int> const& tab) {
-		if(number < tab[0] || number > tab[tab.size() - 1])
-			return false;
+	matrix<int> operator*(matrix<int> A, matrix<int> B) {
+		int rowsA = A.size1(), colsA = A.size2(),
+		    rowsB = B.size1(), colsB = B.size2();
 
-		int i = 0, j = tab.size();		// I(0, n)
+		if(colsA != rowsB)
+			throw new std::length_error("Matrices must have a the right sizes to be multiplicated");
 
-		while(i != j) {
-			int k = ((j-i)/2) + i;
+		matrix<int> result(rowsA, colsB);
 
-			if(tab[k] == number)
-				return true;
-			else if(tab[k] > number)
-				j = k;                 // T(i, i + (j-1)/2)
-			else
-				i = k;                 // T(i + (j-1)/2, i)
-		}
-		return false;
-	}
-
-	std::vector<int> intersect(std::vector<int> const& tab1, std::vector<int> const& tab2) {
-		int n1 = tab1.size();
-
-		std::vector<int> result;
-		int i = 0;		                      // I(0,0)
-
-		while(i < n1) {
-			int num = tab1[i];
-			if(isInVector(num, tab2)) {
-				result.push_back(num);        // I(i+1,j)
+		for(int row = 0 ; row < rowsA ; ++row) {
+			for(int col = 0 ; col < colsB ; ++col) {
+				int el = 0;
+				for(int i = 0 ; i < colsA ; ++i) {
+					el += A(row, i)*B(i, col);
+				}
+				result(row, col) = el;
 			}
-			++i;	                          // I(i,j)
 		}
+
 		return result;
 	}
 
