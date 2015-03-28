@@ -1,7 +1,7 @@
 #include <iostream>
 #include "question1.hpp"
 
-using namespace question1;
+using question1::operator*;
 
 int main (int argc, char const* argv[]) {
 	
