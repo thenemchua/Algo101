@@ -4,7 +4,7 @@ using boost::numeric::ublas::matrix;
 
 namespace question1 {
 
-	matrix<int> operator*(matrix<int> A, matrix<int> B) {
+	matrix<int> operator*(matrix<int> const& A, matrix<int> const& B) {
 		int rowsA = A.size1(), colsA = A.size2(),
 		    rowsB = B.size1(), colsB = B.size2();
 
