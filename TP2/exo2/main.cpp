@@ -20,9 +20,9 @@
  *	(n est la longeur de tab)
  *
  *	Progression :
- *	I(d, f, d', k) ∧ tab[k + 1] = tab[d'] ∧ d' - k + 1 > f - d ⇒ I(d', k+1, d' , k+1)
- *	I(d, f, d', k) ∧ tab[k + 1] = tab[d'] ∧ d' - k + 1 ≤ f - d ⇒ I(d , f  , d' , k+1)
- *	I(d, f, d', k) ∧ tab[k + 1] ≠ tab[d']                  ⇒ I(d , f  , k+1, k+1)
+ *	I(d, f, d', k) ∧ tab[k + 1] = tab[d'] ∧ d' - k + 1 > f - d ⇒ I(d', k+1, d' , k+1) (1)
+ *	I(d, f, d', k) ∧ tab[k + 1] = tab[d'] ∧ d' - k + 1 ≤ f - d ⇒ I(d , f  , d' , k+1) (2)
+ *	I(d, f, d', k) ∧ tab[k + 1] ≠ tab[d']                  ⇒ I(d , f  , k+1, k+1)     (3)
  */
 
 std::pair<int, int> pplstc(std::vector<int> tab) {
@@ -40,13 +40,16 @@ std::pair<int, int> pplstc(std::vector<int> tab) {
 	std::pair<int, int> currentIndices = pplstcIndices;
 	int constant = tab[0];
 
+	// Progression //
 	for(int i = 1 ; i < size ; ++i) {
 		if(tab[i] == constant) {
 			currentIndices.second = i+1;
-			if(currentIndices.second - currentIndices.first > pplstcIndices.second - pplstcIndices.first) {
+			if(currentIndices.second - currentIndices.first > pplstcIndices.second - pplstcIndices.first) { 
+				// Cas (1)
 				pplstcIndices = currentIndices;
-			}
-		} else {
+			} // Sinon Cas (2)
+		} else { 
+			// Cas (3)
 			constant = tab[i];
 			currentIndices.first = i;
 			currentIndices.second = i+1;
