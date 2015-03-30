@@ -2,6 +2,8 @@
 #include <vector>
 #include <random>
 
+#include "question1.hpp"
+
 std::ostream& operator<<(std::ostream& os, std::vector<int> const& tab) {
 	for(auto const& el : tab) {
 		os << el << " ";
@@ -17,7 +19,7 @@ int main (int argc, char const* argv[]) {
 	}
 
 	std::default_random_engine random_engine((std::random_device()()));
-	std::uniform_int_distribution<int> distribution(0, 100);
+	std::uniform_int_distribution<int> distribution(-100, 100);
 
 	distribution(random_engine);
 
@@ -27,8 +29,10 @@ int main (int argc, char const* argv[]) {
 		el = distribution(random_engine);
 	}
 
-	std::cout << tab << std::endl;
+	std::pair<int, int> maxSubArrayIndices = question1::maxSubArray(tab);
 
+	std::cout << tab << std::endl;
+	std::cout << maxSubArrayIndices.first << ", " << maxSubArrayIndices.second << std::endl;
 
 	return 0;
 }
