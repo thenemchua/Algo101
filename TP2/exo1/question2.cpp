@@ -46,8 +46,6 @@ namespace question2 {
 		matrix<int> result = base;
 		matrix<int> rest = identity_matrix<int>(rows);
 
-		std::cout << rest << std::endl;
-
 		while(exp > 1) {
 			if(exp % 2 == 1) { // Si la puissance est impaire , on stocke le reste pour l'ajouter à la fin, Cas (2)
 				rest *= result;
