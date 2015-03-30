@@ -5,41 +5,61 @@
 namespace question1 {
 
 	std::pair<int, int> maxSubArray(std::vector<int> tab) {
-		int tabSize = tab.size();
+		//Invariant : I(d, f, s, d', s', k) => T[d:f] est le pstsm dans T[0:k], de somme s
+		//                                  => T[d':k] est le suffixe de somme maximale dans T[0:k], de somme s'
 
-		if(tabSize == 0)
-			throw new std::length_error("Empty vector");
+		//Initialisation : d  = 0
+		//                 f  = 1
+		//                 s  = T[0]
+		//                 d' = 0
+		//                 s' = 0
+		//                 k  = 1
 
-		std::pair<int, int> maxSubArrayIndices(0,1),
-		                    currentIndices(0,1);
-		int max = tab[0],
-		    sum = max;
+		//Arrêt : k = n
 
-		while(currentIndices.first < tabSize - 1 || currentIndices.second < tabSize) {
-			if(currentIndices.second != tabSize) {
-				int elBefore  = tab[currentIndices.first],
-				    elAfter   = tab[currentIndices.second],
-				    firstSum  = sum + elAfter,
-				    secondSum = sum - elBefore;
-				if(firstSum > secondSum || currentIndices.first == currentIndices.second - 1) {
-					sum = firstSum;
-					++currentIndices.second;
-				} else {
-					sum = secondSum;
-					++currentIndices.first;
-				}
-			} else {
-				sum = sum - tab[currentIndices.first];
-				++currentIndices.first;
+		//Implications : I(d, f, s, d', s', k) ∧ s ≥ 0 ∧ s' + T[k] > s  => I( d' , k+1 , s'+T[k] , d' , s'+T[k] , k+1 )
+		//               I(d, f, s, d', s', k) ∧ s ≥ 0 ∧ s' + T[k] ≤ s  => I( d  , f   , s       , d' , s'+T[k] , k+1 )
+		//               I(d, f, s, d', s', k) ∧ s < 0 ∧      T[k] > s  => I( k  , k+1 , T[k]    , k  , T[k]    , k+1 )
+		//               I(d, f, s, d', s', k) ∧ s < 0 ∧      T[k] ≤ s  => I( d  , f   , s       , k  , T[k]    , k+1 )
+
+		int d = 0, f = 1,
+		    s = tab[0],
+			dp = 0,
+			sp = s,
+			k = 1,
+			size = tab.size();
+		while(k != size) {		                  //I(d, f, s, d', s', k) && (k ≠ n)
+			if(sp >= 0) {	                      //I(d, f, s, d', s', k) && (k ≠ n) && (s >= 0)
+				if(sp + tab[k] > s) {             //I(d, f, s, d', s', k) && (k ≠ n) && (s >= 0) && (s' + T[k] > s) => I(d', k+1, s'+T[k], d', s'+T[k], k+1)
+					d = dp;
+					f = k + 1;
+					s = sp + tab[k];
+					sp = sp + tab[k];
+					k++;
+				}                                 //I(d, f, s, d', s', k)
+				else {                            //I(d, f, s, d', s', k) && (k != n) && (s >= 0) && & (s' + T[k] =< s) => I(d, f, s, d', s'+T[k], k+1)
+					sp = sp + tab[k];
+					k++;
+				}                                 //I(d, f, s, d', s', k)
 			}
-
-			if(sum > max) {
-				max = sum;
-				maxSubArrayIndices = currentIndices;
+			else {	                              //I(d, f, s, d', s', k) && (k != n) && (s < 0)-
+				if (tab[k] > s) {                 //I(d, f, s, d', s', k) && (k != n) && (s < 0) && (T[k] > s) => I(k, k+1, T[k], k, T[k], k+1)
+					d = k;
+					f = k + 1;
+					s = tab[k];
+					dp = d;
+					sp = s;
+					k++;
+				}                               //I(d,f,s,d',s',k)
+				else {                           //I(d, f, s, d', s', k) && (k != n) && (s < 0) && (T[k] > s) => I(d, f, s, k, T[k], k+1)
+					dp = k;
+					sp = tab[k];
+					k++;
+				}                               //I(d, f, s, d', s', k)
 			}
 		}
-
-		return maxSubArrayIndices;
+		std::pair<int, int> dfs(d,f);
+		return dfs;
 	}
 
 }
