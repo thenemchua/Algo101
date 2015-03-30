@@ -1,6 +1,7 @@
 #include "question2.hpp"
 
 using boost::numeric::ublas::matrix;
+using boost::numeric::ublas::identity_matrix;
 using boost::numeric::ublas::prod;
 
 namespace question2 {
@@ -26,16 +27,7 @@ namespace question2 {
 			throw new std::length_error("Matrix must have a the right sizes to be powered");
 
 		matrix<int> result = base;
-		matrix<int> rest(rows, cols);
-
-		for(int row = 0 ; row < rows ; ++row) {
-			for(int col = 0 ; col < cols ; ++col) {
-				if(row == col)
-					rest(row, col) = 1;
-				else
-					rest(row, col) = 0;
-			}
-		}
+		matrix<int> rest = identity_matrix<int>(rows);
 
 		std::cout << rest << std::endl;
 
