@@ -31,7 +31,7 @@ int main (int argc, char const* argv[]) {
 
 	std::pair<int, int> maxSubArrayIndices = question1::maxSubArray(tab);
 
-	std::cout << tab << std::endl;
+	// std::cout << tab << std::endl;
 	std::cout << maxSubArrayIndices.first << ", " << maxSubArrayIndices.second << std::endl;
 
 	return 0;
