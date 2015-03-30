@@ -29,8 +29,6 @@ namespace question2 {
 		matrix<int> result = base;
 		matrix<int> rest = identity_matrix<int>(rows);
 
-		std::cout << rest << std::endl;
-
 		while(exp > 1) {
 			if(exp % 2 == 1) {
 				rest *= result;
