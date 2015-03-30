@@ -28,7 +28,7 @@ std::pair<int, int> pplstc(std::vector<int> tab) {
 	return pplstcIndices;
 }
 
-int main(int argc, char const* argv[]) {
+int main() {
 	std::vector<int> tab{1,1, 2,2,2,2,2, 3,3,3,3,3, 4,4,4,4};
 	std::pair<int, int> result = pplstc(tab);
 	

@@ -39,7 +39,7 @@ std::ostream& operator<<(std::ostream& os, boost::numeric::ublas::matrix<int> ma
 	return os;
 }
 
-int main (int argc, char const* argv[]) {
+int main() {
 	
 	boost::numeric::ublas::matrix<int> A(3,3);
 	boost::numeric::ublas::matrix<int> B(3,3);
