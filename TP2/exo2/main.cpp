@@ -1,9 +1,37 @@
 #include <iostream>
 #include <vector>
 
+/**
+ *	Cette fonction renvoie le premier plus long sous-tableau constant
+ *
+ *	Invariant : I(d, f, d', k) 
+ *	⇒ tab[d :f] est le pplstc du tableau tab [0:k]
+ *	⇒ tab[d':k] est le suffixe constant le plus long du tableau tab [0:k]
+ *
+ *	Initialisation :
+ *	d = f = d' = 0;
+ *	Si n ≠ 0
+ *		k = 1
+ *	Sinon
+ *		k = 0
+ *
+ *	Arrêt :
+ *	k == n
+ *	(n est la longeur de tab)
+ *
+ *	Progression :
+ *	I(d, f, d', k) ∧ tab[k + 1] = tab[d'] ∧ d' - k + 1 > f - d ⇒ I(d', k+1, d' , k+1)
+ *	I(d, f, d', k) ∧ tab[k + 1] = tab[d'] ∧ d' - k + 1 ≤ f - d ⇒ I(d , f  , d' , k+1)
+ *	I(d, f, d', k) ∧ tab[k + 1] ≠ tab[d']                  ⇒ I(d , f  , k+1, k+1)
+ */
+
 std::pair<int, int> pplstc(std::vector<int> tab) {
-	int size = tab.size();
-	std::pair<int, int> pplstcIndices(0,0);
+
+	int size = tab.size(); // n est la longeur de tab
+
+	// Initialisation //
+
+	std::pair<int, int> pplstcIndices(0,0);	
 
 	if(size == 0)
 		return pplstcIndices;
@@ -28,7 +56,7 @@ std::pair<int, int> pplstc(std::vector<int> tab) {
 	return pplstcIndices;
 }
 
-int main(int argc, char const* argv[]) {
+int main(int argc, char const *	argv[]) {
 	std::vector<int> tab{1,1, 2,2,2,2,2, 3,3,3,3,3, 4,4,4,4};
 	std::pair<int, int> result = pplstc(tab);
 	
