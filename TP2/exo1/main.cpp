@@ -6,7 +6,7 @@
 
 using question1::operator*;
 
-std::ostream& operator<<(std::ostream& os, boost::numeric::ublas::matrix<int> mat) {
+std::ostream& operator<<(std::ostream& os, boost::numeric::ublas::matrix<int> mat) { // Fonction permettant l'impression d'une matrice
 	int rows = mat.size1(),
 	    cols = mat.size2();
 
