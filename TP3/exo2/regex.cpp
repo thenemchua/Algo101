@@ -26,10 +26,7 @@ bool match(std::string const& base,
 		// No special characters
 		if(firstSpecialCharacter == patternEnd) {
 
-			if(baseNewPosition == baseEnd)
-				return true;
-			else
-				return false;
+			return baseNewPosition == baseEnd;
 
 		} else if(*firstSpecialCharacter == '%') {
 
