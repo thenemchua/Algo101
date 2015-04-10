@@ -21,3 +21,9 @@ all: $(EXECS)
 
 %.bin: %/*.cpp
 	$(CXX) $(CFLAGS) $^ -o $@
+
+fibonacci.csv: exo3.bin
+	./exo3.bin
+
+fibonacci.svg: fibonacci.csv
+	R --no-save < fibonacci.R 
