@@ -1,5 +1,5 @@
 CXX            = g++
-CFLAGS         = -Wall -Wextra -std=c++0x
+CFLAGS         = -Wall -Wextra -std=c++11
 
 EXOS           = $(dir $(wildcard **/main.cpp))
 EXECS          = $(EXOS:%/=%.bin)
