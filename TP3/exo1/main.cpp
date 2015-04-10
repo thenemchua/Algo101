@@ -2,6 +2,7 @@
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <stdexcept>
 
 std::ostream& operator<<(std::ostream& os, std::vector<int> const& tab) {
 	for(auto const& el : tab) {
@@ -22,7 +23,7 @@ int schism(std::vector<int> & tab, int begin, int end) {
 			k++, jp++;
 		}	                                // I(k,jp)
 	}
-	return k;	
+	return k;
 }
 
 int pieme(std::vector<int> & tab, int begin, int end, int p, std::default_random_engine & random_engine, std::uniform_int_distribution<int> & distribution) {
@@ -41,7 +42,10 @@ int pieme(std::vector<int> & tab, int begin, int end, int p, std::default_random
 	}
 }
 
-int pieme(std::vector<int> tab, int p) {
+int pieme(std::vector<int> tab, unsigned int p) {
+	if(p >= tab.size())
+		throw std::invalid_argument("Position is greater than the size of the array");
+
 	// Initialize random system
 	std::default_random_engine random_engine((std::random_device()()));
 	std::uniform_int_distribution<int> distribution(0, tab.size());
@@ -73,6 +77,11 @@ int main(int argc, char const* argv[]) {
 	std::cout << tab << std::endl;
 	std::cout << "> " << sortedTab << std::endl;
 	std::cout << pieme(tab, std::stoi(argv[2])) << std::endl;
+
+	// C++ style !
+	std::vector<int> tempTab = tab;
+	std::nth_element(tempTab.begin(), tempTab.begin() + (std::stoi(argv[2]) - 1), tempTab.end());
+	std::cout << tempTab[std::stoi(argv[2]) - 1] << std::endl;
 
 	return 0;
 }
