@@ -4,6 +4,10 @@
 # Vim tags files
 tags
 
+# Output files
+*.csv
+*.svg
+
 # Created by https://www.gitignore.io
 
 ### C++ ###
