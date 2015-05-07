@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 #include "question1.hpp"
 #include "question2.hpp"
@@ -22,7 +23,7 @@ std::ostream& operator<<(std::ostream& os, boost::numeric::ublas::matrix<int> ma
 				}
 			}
 
-			os << mat(row, col) << "\t";
+			os << std::setw(4) << mat(row, col) << " ";
 
 			if(col == cols - 1) {
 				if(row == 0) {
@@ -40,7 +41,7 @@ std::ostream& operator<<(std::ostream& os, boost::numeric::ublas::matrix<int> ma
 }
 
 int main() {
-	
+
 	boost::numeric::ublas::matrix<int> A(3,3);
 	boost::numeric::ublas::matrix<int> B(3,3);
 
