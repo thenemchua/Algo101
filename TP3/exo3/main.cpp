@@ -7,7 +7,7 @@ typedef std::chrono::high_resolution_clock high_functioning_clock;
 typedef std::chrono::time_point<high_functioning_clock> timer;
 typedef std::chrono::duration<double, std::milli> duration;
 
-int fibonacci(unsigned int index) {
+int fibonacci(long long unsigned int index) {
 	if(index == 0)
 		return 0;
 	else if(index <= 2)
@@ -20,7 +20,7 @@ int main() {
 
 	std::ofstream fibonacciCSV("fibonacci.csv");
 
-	for(int i = 0 ; i <= 40 ; ++i) { // Do the computation for the first 40 elements
+	for(int i = 0 ; i <= 50 ; ++i) { // Do the computation for the first 40 elements
 		timer start = high_functioning_clock::now();
 
 		std::cout << "F_" << i << " = " << fibonacci(i) << std::endl; // Print it to command prompt
