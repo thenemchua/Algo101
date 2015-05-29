@@ -75,7 +75,7 @@ int main(int argc, char const* argv[]) {
 	carnet[8] = std::tuple<int, int>{10, 15};
 	carnet[9] = std::tuple<int, int>{40, 15};
 
-	boost::numeric::ublas::matrix<int> dynaMat = question4::allonsY(carnet, 100);
+	boost::numeric::ublas::matrix<int> dynaMat = question4::computeMatrix(carnet, 100);
 	std::vector<int> spots = question6::computeSpots(dynaMat);
 
 	//std::cout << dynaMat << std::endl
