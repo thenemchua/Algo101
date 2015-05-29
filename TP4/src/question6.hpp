@@ -6,7 +6,7 @@
 
 using boost::numeric::ublas::matrix;
 
-namespace question5 {
+namespace question6 {
 
 	std::vector<int> computeSpots(matrix<int> dynaMat);
 

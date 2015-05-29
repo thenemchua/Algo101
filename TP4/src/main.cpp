@@ -2,7 +2,7 @@
 #include<iomanip>
 
 #include "question4.hpp"
-#include "question5.hpp"
+#include "question6.hpp"
 
 std::ostream& operator<<(std::ostream& os, boost::numeric::ublas::matrix<int> mat) { // Fonction permettant l'impression d'une matrice
 	int rows = mat.size1(),
@@ -76,8 +76,15 @@ int main(int argc, char const* argv[]) {
 	carnet[9] = std::tuple<int, int>{40, 15};
 
 	boost::numeric::ublas::matrix<int> dynaMat = question4::allonsY(carnet, 100);
+	std::vector<int> spots = question6::computeSpots(dynaMat);
 
-	std::cout << dynaMat << std::endl;
-	std::cout << question5::computeSpots(dynaMat) << std::endl;
+	//std::cout << dynaMat << std::endl
+			  //<< spots << std::endl << std::endl;
+
+	// Question 7
+	std::cout << "Sous-ensemble de spots de gain total maximum :" << std::endl
+	          << spots << std::endl
+	          << "Gain total maximum :" << std::endl
+	          << dynaMat(dynaMat.size1() - 1, dynaMat.size2() - 1) << std::endl;
 	return 0;
 }

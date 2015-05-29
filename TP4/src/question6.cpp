@@ -1,8 +1,8 @@
-#include "question5.hpp"
+#include "question6.hpp"
 
 using boost::numeric::ublas::matrix;
 
-namespace question5 {
+namespace question6 {
 
 	std::vector<int> computeSpots(matrix<int> dynaMat) {
 		std::vector<int> spots;
