@@ -28,9 +28,9 @@
 
 \begin{align*}
 	\forall k \in \llbracket 1, K\rrbracket, \forall t \in \llbracket 0, T \rrbracket,
-		m(k, t) = & m(k-1, t) + g(k) && \text{si}    && m(k-1,t)+g(k) > m(k-1,t)\\
-		          &                  && \text{et}    && d(k) \leq t\\
-		          & m(k-1, t)        && \text{sinon} &&\\
+		m(k, t) = & \max(m(k-1, t-d(k))+g(k), m(k-1, t))) && \text{si}    && m(k-1,t)+g(k) > m(k-1,t)\\
+		          &                                        && \text{et}    && d(k) \leq t\\
+		          & m(k-1, t)                              && \text{sinon} && \\
 \end{align*}
 
 \end{document}
