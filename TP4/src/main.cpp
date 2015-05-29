@@ -2,6 +2,7 @@
 #include<iomanip>
 
 #include "question4.hpp"
+#include "question5.hpp"
 
 std::ostream& operator<<(std::ostream& os, boost::numeric::ublas::matrix<int> mat) { // Fonction permettant l'impression d'une matrice
 	int rows = mat.size1(),
@@ -36,6 +37,31 @@ std::ostream& operator<<(std::ostream& os, boost::numeric::ublas::matrix<int> ma
 	return os;
 }
 
+template<typename T>
+std::ostream& operator<<(std::ostream& os, std::vector<T> vec) {
+	int vecSize = vec.size();
+	for(int i = 0 ; i < vecSize ; ++i) {
+		if(i == 0) {
+			os << "⎛";
+		} else if(i == vecSize - 1) {
+			os << "⎝";
+		} else {
+			os << "⎜";
+		}
+		
+		os << vec[i];
+
+		if(i == 0) {
+			os << "⎞" << std::endl;
+		} else if(i == vecSize - 1) {
+			os << "⎠" << std::endl;
+		} else {
+			os << "⎟" << std::endl;
+		}
+	}
+	return os;
+}
+
 int main(int argc, char const* argv[]) {
 	std::vector<std::tuple<int, int>> carnet(10);
 	carnet[0] = std::tuple<int, int>{20, 25};
@@ -49,6 +75,9 @@ int main(int argc, char const* argv[]) {
 	carnet[8] = std::tuple<int, int>{10, 15};
 	carnet[9] = std::tuple<int, int>{40, 15};
 
-	std::cout << question4::allonsY(carnet, 100) << std::endl;
+	boost::numeric::ublas::matrix<int> dynaMat = question4::allonsY(carnet, 100);
+
+	std::cout << dynaMat << std::endl;
+	std::cout << question5::computeSpots(dynaMat) << std::endl;
 	return 0;
 }
