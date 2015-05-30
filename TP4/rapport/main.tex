@@ -9,6 +9,7 @@
 \usepackage{microtype}
 
 \usepackage[hidelinks]{hyperref}
+\usepackage{pdfpages}
 
 \begin{document}
 
@@ -28,9 +29,14 @@
 
 \begin{align*}
 	\forall k \in \llbracket 1, K\rrbracket, \forall t \in \llbracket 0, T \rrbracket,
-		m(k, t) = & \max(m(k-1, t-d(k))+g(k), m(k-1, t))) && \text{si}    && m(k-1,t)+g(k) > m(k-1,t)\\
-		          &                                        && \text{et}    && d(k) \leq t\\
+		m(k, t) = & \max(m(k-1, t-d(k))+g(k), m(k-1, t))) && \text{si} && d(k) \leq t\\
 		          & m(k-1, t)                              && \text{sinon} && \\
 \end{align*}
+
+\includepdf{maincpp.pdf}
+\includepdf{question4hpp.pdf}
+\includepdf{question4cpp.pdf}
+\includepdf{question6hpp.pdf}
+\includepdf{question6cpp.pdf}
 
 \end{document}
