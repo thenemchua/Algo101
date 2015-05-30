@@ -4,7 +4,7 @@ using boost::numeric::ublas::matrix;
 
 namespace question4 {
 
-	matrix<int> allonsY(std::vector<std::tuple<int, int>> carnet,
+	matrix<int> computeMatrix(std::vector<std::tuple<int, int>> carnet,
 	                    int slotLength) { 
 		int spotCount(carnet.size()); // K
 
