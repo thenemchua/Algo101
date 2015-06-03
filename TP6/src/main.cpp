@@ -1,5 +1,8 @@
 #include <iostream>
+#include <limits>
 
+#include "printing.hpp"
+#include "local.hpp"
 #include "map.hpp"
 #include "robot.hpp"
 
@@ -9,10 +12,16 @@ int main(int argc, char const* argv[]) {
 		return 64;
 	}
 
-	Map map(std::stoi(argv[1]));
+	int size = std::stoi(argv[1]);
+
+	Map map(size);
 	Robot robot(map);
 
-	std::cout << robot.goEast() << std::endl;
+	float localCost = local::minimize(robot, map);
+
+	std::cout << std::endl
+	          << "Coût total (minimisation locale): "
+	          << localCost << std::endl;
 
 	return 0;
 }

@@ -6,9 +6,19 @@
 class Robot {
 public:
 	Robot(Map const& map);
+
+	float getEastCost() const;
 	float goEast();
+	float getNorthCost() const;
 	float goNorth();
+	float getNorthEastCost() const;
 	float goNorthEast();
+
+	float getTotalCost() const;
+
+	int getCoordX() const;
+	int getCoordY() const;
+	Map const& getMap() const;
 
 private:
 	int coordX;
