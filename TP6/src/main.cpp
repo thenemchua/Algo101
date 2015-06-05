@@ -3,12 +3,13 @@
 
 #include "printing.hpp"
 #include "local.hpp"
+#include "global.hpp"
 #include "map.hpp"
 #include "robot.hpp"
 
 int main(int argc, char const* argv[]) {
 	if(argc != 2) {
-		std::cout << "Usage: " << argv[0] << " n" << std::endl;
+		std::cerr << "Usage: " << argv[0] << " n" << std::endl;
 		return 64;
 	}
 
@@ -21,7 +22,13 @@ int main(int argc, char const* argv[]) {
 
 	std::cout << std::endl
 	          << "Coût total (minimisation locale): "
-	          << localCost << std::endl;
+	          << localCost << std::endl << std::endl;
+
+	float globalCost = global::minimize(robot, map);
+
+	std::cout << std::endl
+			  << "Coût total (minimisation globale): "
+	          << globalCost << std::endl;
 
 	return 0;
 }

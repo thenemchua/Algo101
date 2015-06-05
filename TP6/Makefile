@@ -4,8 +4,8 @@ CFLAGS         = -Wall -Wextra -std=c++11
 EXOS           = $(dir $(wildcard **/main.cpp))
 EXECS          = $(EXOS:%/=%.bin)
 
-PROFILE_CFLAGS = -O -pg
-DEBUG_CFLAGS   = -O -g
+PROFILE_CFLAGS = -Og -pg
+DEBUG_CFLAGS   = -Og -g
 RELEASE_CFLAGS = -O2
 
 debug: CFLAGS += $(DEBUG_CFLAGS)

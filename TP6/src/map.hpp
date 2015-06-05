@@ -6,7 +6,7 @@
 
 class Map {
 public:
-	Map(int size);
+	explicit Map(int size);
 	float eastCost(int coordX, int coordY) const;
 	float northCost(int coordX, int coordY) const;
 	float northEastCost(int coordX, int coordY) const;
