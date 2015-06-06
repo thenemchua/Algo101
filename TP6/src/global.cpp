@@ -52,8 +52,10 @@ namespace global {
 			}
 		}
 
-		std::cout << directionMat << std::endl;
-		std::cout << costMat      << std::endl;
+		if(interactive) {
+			std::cout << directionMat << std::endl;
+			std::cout << costMat      << std::endl;
+		}
 
 		std::vector<int> reversed_directions;
 		// Parcours de la matrice dans la méthode WallE_Matrix::iterator::operator++

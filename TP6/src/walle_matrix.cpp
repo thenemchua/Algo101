@@ -50,8 +50,7 @@ WallE_Matrix::iterator& WallE_Matrix::iterator::operator=(iterator&& other) {
 	return *this;
 }
 
-WallE_Matrix::iterator::~iterator() {
-}
+WallE_Matrix::iterator::~iterator() = default;
 
 WallE_Matrix::iterator& WallE_Matrix::iterator::operator++() {
 	int value = (*matrix)(xIndex, yIndex);
