@@ -5,9 +5,16 @@
 
 namespace local {
 	float minimize(Robot robot, Map const& map) {
+		bool interactive = isInteractive();
+
 		int size = map.getSize();
 
-		std::cout << map << robot;
+		if(interactive) {
+			std::cout << map << robot;
+		} else {
+			std::cout << "Chemin du robot: " << std::endl
+			          << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+		}
 		while(robot.getCoordX() < size - 1 || robot.getCoordY() < size - 1) {
 			if(robot.getNorthCost() < robot.getEastCost()) {
 				if(robot.getNorthCost() < robot.getNorthEastCost()) {
@@ -20,8 +27,14 @@ namespace local {
 			} else {
 				robot.goNorthEast();
 			}
-			std::cout << robot;
+
+			if(interactive) {
+				std::cout << robot;
+			} else {
+				std::cout << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+			}
 		}
+		std::cout << std::endl;
 		return robot.getTotalCost();
 	}
 }

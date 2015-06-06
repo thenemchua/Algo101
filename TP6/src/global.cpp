@@ -8,6 +8,8 @@ namespace global {
 
 
 	float minimize(Robot robot, Map const& map) {
+		bool interactive = isInteractive();
+
 		int size = map.getSize();
 		WallE_Matrix directionMat(size);
 		matrix<int> costMat(size, size);
@@ -59,19 +61,44 @@ namespace global {
 			reversed_directions.push_back(direction);
 		}
 
-		std::cout << map << robot;
+		if(interactive) {
+			std::cout << map << robot;
+		} else {
+			std::cout << "Chemin du robot:" << std::endl
+			          << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+		}
+
 		for(auto it = reversed_directions.rbegin() ; it != reversed_directions.rend() ; ++it) {
 			if(*it == NORTH) {
 				robot.goNorth();
-				std::cout << robot;
+
+				if(interactive) {
+					std::cout << robot;
+				} else {
+					std::cout << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+				}
+
 			} else if(*it == EAST) {
 				robot.goEast();
-				std::cout << robot;
+
+				if(interactive) {
+					std::cout << robot;
+				} else {
+					std::cout << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+				}
+
 			} else {
 				robot.goNorthEast();
-				std::cout << robot;
+
+				if(interactive) {
+					std::cout << robot;
+				} else {
+					std::cout << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+				}
+
 			}
 		}
+		std::cout << std::endl;
 
 		return robot.getTotalCost();
 	}
