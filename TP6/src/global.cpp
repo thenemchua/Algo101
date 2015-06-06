@@ -12,7 +12,7 @@ namespace global {
 
 		int size = map.getSize();
 		WallE_Matrix directionMat(size);
-		matrix<int> costMat(size, size);
+		matrix<float> costMat(size, size);
 
 		directionMat(0,0) = 2;
 		costMat(0,0) = 0;

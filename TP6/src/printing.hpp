@@ -12,7 +12,7 @@ using boost::numeric::ublas::matrix;
 bool isInteractive();
 std::ostream& operator<<(std::ostream& os, Map m);
 std::ostream& operator<<(std::ostream& os, Robot r);
-std::ostream& operator<<(std::ostream& os, matrix<int> mat);
+std::ostream& operator<<(std::ostream& os, matrix<float> mat);
 std::ostream& operator<<(std::ostream& os, WallE_Matrix mat);
 
 #endif

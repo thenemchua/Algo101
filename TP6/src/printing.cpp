@@ -68,7 +68,7 @@ std::ostream& operator<<(std::ostream& os, Robot r) {
 	return os;
 }
 
-std::ostream& operator<<(std::ostream& os, matrix<int> mat) {
+std::ostream& operator<<(std::ostream& os, matrix<float> mat) {
 	int rows = mat.size1(),
 		cols = mat.size2();
 
@@ -84,7 +84,7 @@ std::ostream& operator<<(std::ostream& os, matrix<int> mat) {
 				}
 			}
 
-			os << std::setw(4) << mat(row, col) << " ";
+			os << std::setprecision(2) << std::fixed << std::setw(5) << mat(row, col) << " ";
 
 			if(col == cols - 1) {
 				if(row == rows - 1) {
