@@ -65,7 +65,7 @@ namespace global {
 			std::cout << map << robot;
 		} else {
 			std::cout << "Chemin du robot:" << std::endl
-			          << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+			          << robot << " ";
 		}
 
 		for(auto it = reversed_directions.rbegin() ; it != reversed_directions.rend() ; ++it) {
@@ -75,7 +75,7 @@ namespace global {
 				if(interactive) {
 					std::cout << robot;
 				} else {
-					std::cout << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+					std::cout << robot << " ";
 				}
 
 			} else if(*it == EAST) {
@@ -84,7 +84,7 @@ namespace global {
 				if(interactive) {
 					std::cout << robot;
 				} else {
-					std::cout << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+					std::cout << robot << " ";
 				}
 
 			} else {
@@ -93,7 +93,7 @@ namespace global {
 				if(interactive) {
 					std::cout << robot;
 				} else {
-					std::cout << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+					std::cout << robot << " ";
 				}
 
 			}

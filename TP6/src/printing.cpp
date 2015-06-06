@@ -51,15 +51,19 @@ std::ostream& operator<<(std::ostream& os, Map m) {
 }
 
 std::ostream& operator<<(std::ostream& os, Robot r) {
-	// Go right
-	std::cout << "\x1b[" << (4*r.getCoordX() + 5) << "C"
-	          // Go up
-	          << "\x1b[" << (2*r.getCoordY() + 3) << "A"
-	          << "⬤"
-	          // Re go left (+1)
-	          << "\x1b[" << (4*r.getCoordX() + 6) << "D"
-	          // Re go down
-	          << "\x1b[" << (2*r.getCoordY() + 3) << "B";
+	if(isInteractive()) {
+		// Go right
+		os << "\x1b[" << (4*r.getCoordX() + 5) << "C"
+		   // Go up
+		   << "\x1b[" << (2*r.getCoordY() + 3) << "A"
+		   << "⬤"
+		   // Re go left (+1)
+		   << "\x1b[" << (4*r.getCoordX() + 6) << "D"
+		   // Re go down
+		   << "\x1b[" << (2*r.getCoordY() + 3) << "B";
+	} else {
+		os << "(" << r.getCoordX() << ", " << r.getCoordY() << ")";
+	}
 
 	return os;
 }

@@ -13,7 +13,7 @@ namespace local {
 			std::cout << map << robot;
 		} else {
 			std::cout << "Chemin du robot: " << std::endl
-			          << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+			          << robot << " ";
 		}
 		while(robot.getCoordX() < size - 1 || robot.getCoordY() < size - 1) {
 			if(robot.getNorthCost() < robot.getEastCost()) {
@@ -31,7 +31,7 @@ namespace local {
 			if(interactive) {
 				std::cout << robot;
 			} else {
-				std::cout << "("  << robot.getCoordX() << ", " << robot.getCoordY() << ") ";
+				std::cout << robot << " ";
 			}
 		}
 		std::cout << std::endl;
