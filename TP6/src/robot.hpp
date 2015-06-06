@@ -7,18 +7,18 @@ class Robot {
 public:
 	Robot(Map const& map);
 
-	float getEastCost() const;
+	float getEastCost() const __attribute__((pure));
 	float goEast();
-	float getNorthCost() const;
+	float getNorthCost() const __attribute__((pure));
 	float goNorth();
-	float getNorthEastCost() const;
+	float getNorthEastCost() const __attribute__((pure));
 	float goNorthEast();
 
-	float getTotalCost() const;
+	float getTotalCost() const __attribute__((pure));
 
-	int getCoordX() const;
-	int getCoordY() const;
-	Map const& getMap() const;
+	int getCoordX() const __attribute__((pure));
+	int getCoordY() const __attribute__((pure));
+	Map const& getMap() const __attribute__((pure));
 
 private:
 	int coordX;

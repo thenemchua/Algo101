@@ -7,10 +7,10 @@
 class Map {
 public:
 	explicit Map(int size);
-	float eastCost(int coordX, int coordY) const;
-	float northCost(int coordX, int coordY) const;
-	float northEastCost(int coordX, int coordY) const;
-	int getSize() const;
+	float eastCost(int coordX, int coordY) const __attribute__((pure));
+	float northCost(int coordX, int coordY) const __attribute__((pure));
+	float northEastCost(int coordX, int coordY) const __attribute__((pure));
+	int getSize() const __attribute__((pure));
 
 private:
 	int const size;

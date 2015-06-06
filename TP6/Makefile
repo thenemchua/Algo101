@@ -1,5 +1,5 @@
 CXX            = g++
-CFLAGS         = -Wall -Wextra -std=c++11
+CFLAGS         = -Wall -Wextra -std=c++11 -Wsuggest-attribute=pure -Wsuggest-attribute=const
 
 EXECS          = main.bin
 SOURCES        = $(wildcard **/*.cpp)

@@ -28,7 +28,7 @@ public:
 		iterator(iterator&& it);
 		iterator& operator=(const iterator& it);
 		iterator& operator=(iterator&& it);
-		~iterator();
+		~iterator() __attribute__((const));
 
 		iterator& operator++();
 		iterator operator++(int);
@@ -36,12 +36,12 @@ public:
 		int& operator*() const;
 		int* operator->() const;
 
-		friend bool operator==(const iterator& lit, const iterator& rit);
-		friend bool operator!=(const iterator& lit, const iterator& rit);
+		friend bool operator==(const iterator& lit, const iterator& rit) __attribute__((pure));
+		friend bool operator!=(const iterator& lit, const iterator& rit) __attribute__((pure));
 
-		int getXIndex() const;
-		int getYIndex() const;
-		WallE_Matrix* getContainer() const;
+		int getXIndex() const __attribute__((pure));
+		int getYIndex() const __attribute__((pure));
+		WallE_Matrix* getContainer() const __attribute__((pure));
 
 	private:
 		WallE_Matrix* matrix;
