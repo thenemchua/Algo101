@@ -18,7 +18,7 @@ std::ostream& operator<<(std::ostream& os, Map m) {
 	for(int i = 1 ; i < m.getSize() ; ++i) {
 		os << "───┬";
 	}
-	os << "───┐" << std::endl;
+	os << "───┐\n";
 
 	for(int i = 1 ; i < m.getSize() ; ++i) {
 		os << std::right << std::setw(2) << line--
@@ -26,23 +26,22 @@ std::ostream& operator<<(std::ostream& os, Map m) {
 		for(int j = 1 ; j < m.getSize() ; ++j) {
 			os << "   │";
 		}
-		os <<  "   │" << std::endl << "   ├";
+		os <<  "   │\n   ├";
 		for(int j = 1 ; j < m.getSize() ; ++j) {
 			os << "───┼";
 		}
-		os << "───┤" << std::endl;
+		os << "───┤\n";
 	}
 
 	os << std::right << std::setw(4) << " 0 │";
 	for(int j = 1 ; j < m.getSize() ; ++j) {
 		os << "   │";
 	}
-	os << "   │" << std::endl << "   └";
+	os << "   │\n   └";
 	for(int i = 1 ; i < m.getSize() ; ++i) {
 		os << "───┴";
 	}
-	os << "───┘" << std::endl
-	   << "  ";
+	os << "───┘\n  ";
 	for(int i = 0 ; i < m.getSize() ; ++i) {
 		os << std::setw(4) << i;
 	}
@@ -88,11 +87,11 @@ std::ostream& operator<<(std::ostream& os, matrix<float> mat) {
 
 			if(col == cols - 1) {
 				if(row == rows - 1) {
-					os << "⎤" << std::endl;
+					os << "⎤\n";
 				} else if(row == 0) {
 					os << "⎦" << std::endl;
 				} else {
-					os << "⎥" << std::endl;
+					os << "⎥\n";
 				}
 			}
 		}
@@ -136,11 +135,11 @@ std::ostream& operator<<(std::ostream& os, WallE_Matrix mat) {
 
 			if(col == cols - 1) {
 				if(row == rows - 1) {
-					os << "⎤" << std::endl;
+					os << "⎤\n";
 				} else if(row == 0) {
 					os << "⎦" << std::endl;
 				} else {
-					os << "⎥" << std::endl;
+					os << "⎥\n";
 				}
 			}
 		}
