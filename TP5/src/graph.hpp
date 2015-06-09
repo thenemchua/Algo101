@@ -4,13 +4,28 @@
 #include <unordered_map>
 #include "vertex.hpp"
 
-// TODO: Rule of five
-
 class Graph {
 public:
 	Graph();
+
+	// Rule of five
+
+	// Copy constructor
+	Graph(Graph const& other);
+	// Move constructor
+	Graph(Graph&& other);
+	// Copy assignment operator
+	Graph& operator=(const Graph& other);
+	// Move assignment operator
+	Graph& operator=(Graph&& other);
+	// Destructor
+	~Graph();
+
 	Vertex & operator[](int const index);
-	void addVertex(Vertex& v);
+	void addVertex(int name);
+	void addEdge(int sourceName, int destinationName, int weight);
+	std::unordered_map<int, Vertex*> getVertexMap() const;
+	int size() const;
 
 private:
 	std::unordered_map<int, Vertex*> vertexMap;

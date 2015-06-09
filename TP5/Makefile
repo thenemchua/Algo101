@@ -1,12 +1,16 @@
 CXX            = g++
-CFLAGS         = -Wall -Wextra -std=c++11
+CFLAGS         = -Wall -Wextra -std=c++11 -Wsuggest-attribute=pure -Wsuggest-attribute=const
 
-EXOS           = $(dir $(wildcard **/main.cpp))
-EXECS          = $(EXOS:%/=%.bin)
+EXECS          = main.bin
+SOURCES        = $(wildcard **/*.cpp)
+HEADERS        = $(wildcard **/*.hpp)
+OBJECTS        = $(SOURCES:%.cpp=%.o)
 
-PROFILE_CFLAGS = -O -pg
-DEBUG_CFLAGS   = -O -g
+PROFILE_CFLAGS = -Og -pg
+DEBUG_CFLAGS   = -Og -g
 RELEASE_CFLAGS = -O2
+
+.PHONY: debug profile release clean all
 
 debug: CFLAGS += $(DEBUG_CFLAGS)
 debug: all
@@ -17,7 +21,13 @@ profile: all
 release: CFLAGS += $(RELEASE_CFLAGS)
 release: all
 
+clean:
+	$(RM) $(EXECS) $(OBJECTS)
+
 all: $(EXECS)
 
-%.bin: %/*.cpp
-	$(CXX) $(CFLAGS) $^ -o $@
+%.o: %.cpp
+	$(CXX) $(CFLAGS) -c $^ -o $@
+
+main.bin: $(OBJECTS) $(HEADERS)
+	$(CXX) $(CFLAGS) $(OBJECTS) -o $@
