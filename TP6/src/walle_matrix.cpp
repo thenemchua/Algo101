@@ -52,6 +52,9 @@ WallE_Matrix::iterator& WallE_Matrix::iterator::operator=(iterator&& other) {
 
 WallE_Matrix::iterator::~iterator() = default;
 
+// Va à la prochaine coordonnée de la matrice depuis le coin (N-1,N-1) (cf. WallE_Matrix::iterator::iteratori(WallE_Matrix))
+// en fonction de la valeur de la case actuelle.
+// Ex: si la case est EST, va à l'ouest (x--)
 WallE_Matrix::iterator& WallE_Matrix::iterator::operator++() {
 	int value = (*matrix)(xIndex, yIndex);
 	if(value == EAST) {

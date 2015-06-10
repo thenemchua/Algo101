@@ -11,22 +11,28 @@ namespace global {
 		bool interactive = isInteractive();
 
 		int size = map.getSize();
+		// Initialise la matrice de direction et la matrice de coûts
 		WallE_Matrix directionMat(size);
 		matrix<float> costMat(size, size);
 
+		// Base
 		directionMat(0,0) = 2;
 		costMat(0,0) = 0;
 
+		// ∀ j ∈ ⟦0,taille⟧, m(0,j) = 0 ∧ M(0,j) = est
 		for(int row = 1 ; row < size ; ++row) {
 			directionMat(0, row) = EAST;
 			costMat(0, row) = costMat(0, row - 1) + map.northCost(0, row - 1);
 		}
 
+		// ∀ i ∈ ⟦0,taille⟧, m(i,0) = 0 ∧ M(i,0) = nord
 		for(int col = 1 ; col < size ; ++col) {
 			directionMat(col, 0) = NORTH;
 			costMat(col, 0) = costMat(col - 1, 0) + map.eastCost(col - 1, 0);
 		}
 
+		// ∀ (i,j) ∈ ⟦0,taille⟧², m(i,j) = min(m(i,j-1)+coûtNord, m(i-1,j)+coûtEst, m(i-1,j-1)+coûtNordEst)
+		//                        M(i,j) = direction de l'origine du minimum
 		for(int row = 1 ; row < size ; ++row) {
 			for(int col = 1 ; col < size ; ++col) {
 
@@ -34,6 +40,7 @@ namespace global {
 				      eastCost  = map.eastCost(col-1, row) + costMat(col-1, row),
 				      northEastCost = map.northEastCost(col-1, row-1) + costMat(col-1, row-1);
 
+				// Calcul du minimum et assignation des valeurs des matrices
 				if(northCost < eastCost) {
 					if(northCost < northEastCost) {
 						directionMat(col, row) = NORTH;
@@ -60,6 +67,7 @@ namespace global {
 		std::vector<int> reversed_directions;
 		// Parcours de la matrice dans la méthode WallE_Matrix::iterator::operator++
 		for(int direction : directionMat) {
+			// Ajout dans un tableau qui contient les étapes à l'envers
 			reversed_directions.push_back(direction);
 		}
 
@@ -70,6 +78,7 @@ namespace global {
 			          << robot << " ";
 		}
 
+		// Parcourt le tableau dans le sens inverse et fait avancer le robot dans la direction appropriée
 		for(auto it = reversed_directions.rbegin() ; it != reversed_directions.rend() ; ++it) {
 			if(*it == NORTH) {
 				robot.goNorth();

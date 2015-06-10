@@ -15,7 +15,13 @@ namespace local {
 			std::cout << "Chemin du robot: " << std::endl
 			          << robot << " ";
 		}
+
+		// Tant que le robot n'est pas arrivé (condition d'arrêt)
 		while(robot.getCoordX() < size - 1 || robot.getCoordY() < size - 1) {
+
+			// Calcul du minimum + aller dans la direction du minimum
+			// Le robot somme automatiquement lorsqu'il va dans une direction
+			// (cf. Robot::goEast, Robot::goNorth, Robot::goNorthEast)
 			if(robot.getNorthCost() < robot.getEastCost()) {
 				if(robot.getNorthCost() < robot.getNorthEastCost()) {
 					robot.goNorth();
@@ -28,6 +34,7 @@ namespace local {
 				robot.goNorthEast();
 			}
 
+			// Afficher le robot
 			if(interactive) {
 				std::cout << robot;
 			} else {

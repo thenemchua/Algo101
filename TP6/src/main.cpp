@@ -15,6 +15,7 @@ int main(int argc, char const* argv[]) {
 
 	int size = std::stoi(argv[1]);
 
+	// Créée le robot et la carte
 	Map map(size);
 	Robot robot(map);
 
