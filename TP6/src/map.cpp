@@ -20,8 +20,15 @@ float Map::northCost(int coordX, int coordY) const {
 	return coordX*coordX;
 }
 
-float Map::northEastCost(int coordX, int coordY) const {
-	if(coordX >= size-1 || coordY >= size-1)
+float Map::westCost(int coordX, int coordY) const {
+	if(coordX <= 0)
+		return std::numeric_limits<float>::infinity();
+
+	return std::pow(coordY, coordX);
+}
+
+float Map::southCost(int coordX, int coordY) const {
+	if(coordY <= 0)
 		return std::numeric_limits<float>::infinity();
 
 	return std::pow(coordY, coordX);
