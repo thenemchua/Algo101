@@ -3,7 +3,8 @@
 
 #define EAST       0
 #define NORTH      1
-#define NORTH_EAST 2
+#define WEST       2
+#define SOUTH      3
 
 #include<boost/numeric/ublas/matrix.hpp>
 
