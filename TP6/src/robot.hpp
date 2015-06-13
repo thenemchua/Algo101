@@ -11,8 +11,10 @@ public:
 	float goEast();
 	float getNorthCost() const __attribute__((pure));
 	float goNorth();
-	float getNorthEastCost() const __attribute__((pure));
-	float goNorthEast();
+	float getWestCost() const __attribute__((pure));
+	float goWest();
+	float getSouthCost() const __attribute__((pure));
+	float goSouth();
 
 	float getTotalCost() const __attribute__((pure));
 
