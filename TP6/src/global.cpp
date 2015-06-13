@@ -2,6 +2,8 @@
 #include "walle_matrix.hpp"
 #include "printing.hpp"
 
+#include <algorithm>
+
 using boost::numeric::ublas::matrix;
 
 namespace global {
@@ -36,25 +38,31 @@ namespace global {
 		for(int row = 1 ; row < size ; ++row) {
 			for(int col = 1 ; col < size ; ++col) {
 
-				float northCost = map.northCost(col, row-1) + costMat(col, row-1),
-				      eastCost  = map.eastCost(col-1, row) + costMat(col-1, row),
-				      northEastCost = map.northEastCost(col-1, row-1) + costMat(col-1, row-1);
-
+				std::vector<float> costs(4);
+				costs[EAST]  = map.eastCost(col-1, row) + costMat(col-1, row);
+				costs[NORTH] = map.northCost(col, row-1) + costMat(col, row-1);
+				costs[WEST]  = map.westCost(col+1, row) + costMat(col+1, row);
+				costs[SOUTH] = map.southCost(col, row+1) + costMat(col, row+1);
+				
 				// Calcul du minimum et assignation des valeurs des matrices
-				if(northCost < eastCost) {
-					if(northCost < northEastCost) {
+				auto el = std::min_element(costs.begin(), costs.end());
+				switch(std::distance(costs.begin(), el)) {
+					case EAST:
+						directionMat(col, row) = EAST;
+						costMat(col, row) = costs[EAST];
+						break;
+					case NORTH:
 						directionMat(col, row) = NORTH;
-						costMat(col, row) = northCost;
-					} else {
-						directionMat(col, row) = NORTH_EAST;
-						costMat(col, row) = northEastCost;
-					}
-				} else if(eastCost < northEastCost) {
-					directionMat(col, row) = EAST;
-					costMat(col, row) = eastCost;
-				} else {
-					directionMat(col, row) = NORTH_EAST;
-					costMat(col, row) = northEastCost;
+						costMat(col, row) = costs[NORTH];
+						break;
+					case WEST:
+						directionMat(col, row) = WEST;
+						costMat(col, row) = costs[WEST];
+						break;
+					case SOUTH:
+						directionMat(col, row) = SOUTH;
+						costMat(col, row) = costs[SOUTH];
+						break;
 				}
 			}
 		}
